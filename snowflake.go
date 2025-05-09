@@ -67,9 +67,10 @@ func (s *Snowflake) Next() (uint64, error) {
 		s.mutex.Unlock()
 	}
 
-	currentTime = currentTime & timeStampMask
 	// 更新时间戳
 	s.lastTimeStamp = currentTime
+
+	currentTime = currentTime & timeStampMask
 
 	// 生成本次id
 	var nextId uint64 = (currentTime-s.startPoint)<<22 |
